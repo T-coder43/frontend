@@ -42,6 +42,7 @@
   <BlogFooter />
 </template>
 
+
 <script>
 import axios from "axios";
 import BlogHeader from "@/components/BlogHeader.vue";
@@ -123,6 +124,7 @@ export default {
 
 <style scoped>
 #user-center {
+  /* background-image: url("../static/1.png"); */
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;

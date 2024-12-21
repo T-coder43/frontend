@@ -1,47 +1,50 @@
-
 <template>
-  <BlogHeader />
-  <div id="grid-container">
-    <div id="signup-form">
-      <h2>注册账号</h2>
-      <form>
-        <div class="form-group">
-          <label for="signupName">账号：</label>
-          <input
-            v-model="signupName"
-            type="text"
-            id="signupName"
-            placeholder="输入用户名"
-          />
-        </div>
-        <div class="form-group">
-          <label for="signupPwd">密码：</label>
-          <input
-            v-model="signupPwd"
-            type="password"
-            id="signupPwd"
-            placeholder="输入密码"
-          />
-        </div>
-        <div class="form-group">
-          <label for="confirmPwd">确认密码：</label>
-          <input
-            v-model="confirmPwd"
-            type="password"
-            id="confirmPwd"
-            placeholder="确认密码"
-          />
-        </div>
-        <div class="form-group">
-          <button v-on:click.prevent="signup" class="btn-primary">提交</button>
-        </div>
-      </form>
-      <p v-if="passwordMismatchError" class="error-message">
-        两次输入的密码不一致
-      </p>
+  <div id="signup-container">
+    <BlogHeader />
+    <div id="grid-container">
+      <div id="signup-form">
+        <h2>注册账号</h2>
+        <form>
+          <div class="form-group">
+            <label for="signupName">账号：</label>
+            <input
+              v-model="signupName"
+              type="text"
+              id="signupName"
+              placeholder="输入用户名"
+            />
+          </div>
+          <div class="form-group">
+            <label for="signupPwd">密码：</label>
+            <input
+              v-model="signupPwd"
+              type="password"
+              id="signupPwd"
+              placeholder="输入密码"
+            />
+          </div>
+          <div class="form-group">
+            <label for="confirmPwd">确认密码：</label>
+            <input
+              v-model="confirmPwd"
+              type="password"
+              id="confirmPwd"
+              placeholder="确认密码"
+            />
+          </div>
+          <div class="form-group">
+            <button v-on:click.prevent="signup" class="btn-primary">
+              提交
+            </button>
+          </div>
+        </form>
+        <p v-if="passwordMismatchError" class="error-message">
+          两次输入的密码不一致
+        </p>
+      </div>
     </div>
+    <BlogFooter />
   </div>
-  <BlogFooter />
 </template>
 
 <script>
@@ -78,7 +81,7 @@ export default {
         .then((response) => {
           this.signupResponse = response.data;
           alert("用户注册成功，快去登录吧！");
-          that.$router.push({ name: "LoginView" });
+          that.$router.push({ name: "Home" });
         })
         .catch((error) => {
           alert(error.message);
@@ -89,28 +92,35 @@ export default {
 </script>
 
 <style scoped>
+#signup-container {
+  background-image: url("../static/1.png"); /* 替换为你想要的背景图片 */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; /* 确保内部内容纵向排列 */
+}
+
 #grid-container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
-  /* padding: 20px; */
   max-width: 400px;
-  margin: 20px auto;
+  width: 100%;
+  padding: 20px;
 }
 
 #signup-form {
-  background: #f9f9f9;
-  padding: 20px;
+  background: rgba(255, 255, 255, 0.8); /* 半透明背景 */
+  padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px; /* 增加顶部外边距 */
-  margin-bottom: 20px; /* 增加底部外边距 */
-  /* margin-left: 20px;
-  margin-right: 20px; */
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
 }
 
 h2 {
-  text-align: center;
   margin-bottom: 20px;
   font-family: "Arial", sans-serif;
   color: #333;
@@ -129,7 +139,7 @@ label {
 
 input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
@@ -138,7 +148,7 @@ input {
 
 .btn-primary {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #4caf50;
   color: white;
   border: none;
@@ -155,9 +165,7 @@ input {
 
 .error-message {
   color: red;
-  text-align: center;
   font-size: 14px;
-  margin-top: -10px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 }
 </style>
